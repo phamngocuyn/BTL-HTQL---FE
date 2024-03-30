@@ -10,15 +10,21 @@
                   Tên đăng nhập không được để trống
                 </div>                
             </div>
-            <div class="my-4">
-              <input type="password" class="form-control" id="password" placeholder="Mật khẩu" formControlName="password">
+            <div class="form-group my-4 password-container">
+              <div class="password-input-group">
+                  <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password" placeholder="Mật khẩu" formControlName="password">
+                  <span class="toggle-password-icon" (click)="toggleShowPassword()">
+                      <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                  </span>
+              </div>
               <div *ngIf="loginForm.get('password')!.hasError('required') && loginForm.get('password')!.touched" class="text-danger">
-                Mật khẩu không được để trống
+                  Mật khẩu không được để trống
               </div>
               <div *ngIf="loginForm.get('password')!.hasError('minlength') && loginForm.get('password')!.touched" class="text-danger">
-                Mật khẩu phải có ít nhất 8 kí tự
+                  Mật khẩu phải có ít nhất 8 kí tự
               </div>
-            </div>
+          </div>
+                   
             <h3 style="font-size: 16px; font-weight: 400; color: rgba(39, 39, 39, 0.7); cursor: pointer;"
                 routerLink="/auth/forget-password">
               Quên mật khẩu?

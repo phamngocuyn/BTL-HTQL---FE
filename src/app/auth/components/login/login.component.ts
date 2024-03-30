@@ -12,6 +12,8 @@ import { AuthServiceService } from 'src/app/core/service/auth-service.service';
 export class LoginComponent implements OnInit {
 
   loginForm !: FormGroup;
+  errorMessage!: string;
+  showPassword: boolean = false;
   
   
   constructor(
@@ -45,22 +47,22 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const username = this.loginForm.get('username')?.value;
       const password = this.loginForm.get('password')?.value;
-      
       this.authService.onLogin({ username, password }).subscribe({
         next: (response) => {
-          // Xử lý khi đăng nhập thành công
           console.log('Login success', response);
-          localStorage.setItem('loginToken', response.data.token);
-          this.router.navigateByUrl('/'); // Chuyển hướng người dùng
+          localStorage.setItem('loginToken', response.token);
+          alert("Đăng nhập thành công")
+          this.router.navigateByUrl("/auth/register");
         },
         error: (error) => {
-          // Xử lý khi có lỗi
-          console.error('Login error lỗi là', error);
+          this.errorMessage = error.message;
         }
       });
-      
-      
     }
+  }
+
+  toggleShowPassword(): void {
+    this.showPassword = !this.showPassword;
   }
   
 }

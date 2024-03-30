@@ -52,3 +52,28 @@
     outline: none;
     border: none;
 }
+.password-container {
+    position: relative;
+    display: block;
+}
+
+.password-input-group {
+    position: relative;
+}
+
+.form-control {
+    width: 100%;
+    padding-right: 40px; /* Tạo không gian cho icon */
+}
+
+.toggle-password-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.text-danger {
+    display: block; /* Thông báo lỗi hiển thị trên một hàng mới */
+}
